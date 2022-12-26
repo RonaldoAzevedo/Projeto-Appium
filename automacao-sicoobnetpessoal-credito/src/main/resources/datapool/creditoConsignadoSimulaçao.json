@@ -1,0 +1,23 @@
+[
+	{
+		"id": "CEN01",
+		"Cenário": "Pré Condições de Teste",
+		"casosTestes": [
+			{
+				
+				"assinatura": "8765",
+				"valor": "10300",
+				"celular": "22222222222",
+				"msg": "Contrato enviado",
+				"idpessoa": "12902",
+				"idinstituicao": "332",
+				"busca": "Consignado",
+				"convenio": "EMPRESA CONSIGNADO AUTOMACAO",
+				"senha": "9876",
+				"msgPdf" : "Valor Operação Credito: 103,00 ( cento e três reais )",
+				"msgOrientacao": "ORIENTAÇÕES PARA CONTINUAR COM SUA SIMULAÇÃO"
+			}
+		]
+	}
+	
+]

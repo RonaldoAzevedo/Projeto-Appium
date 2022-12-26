@@ -1,0 +1,24 @@
+[
+	{
+		"id": "CEN01",
+		"Cenário": "Pré Condições de Teste",
+		"casosTestes": [
+			{
+				"busca": "Contratar/Simular",
+				"estado": "Distrito Federal",
+				"municipio": "Brasília",
+				"finalidade": "Custeio",
+				"programa": "Pronaf",
+				"produto": "Abacaxi",
+				"atividade": "Agrícola",
+				"consorcio": "Não consorciado",
+				"cestaSafra": "Irrigadas",
+				"valor": "10000",
+				"tel": "61984767635"
+				"registrado": "A sua solicitação de financiamento de crédito rural foi registrada.",
+				"solicitacao": "A simulação da sua solicitação de financiamento foi registrada.",
+			}
+		]
+	}
+	
+]

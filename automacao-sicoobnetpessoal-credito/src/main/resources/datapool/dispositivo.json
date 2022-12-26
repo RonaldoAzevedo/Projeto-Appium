@@ -1,0 +1,14 @@
+[
+	{
+		"id": "CEN01",
+		"Cenário": "Pré Condições de Teste",
+		"casosTestes": [
+			{
+				
+				"busca": "pix",
+				"senha": "9876"
+			}
+		]
+	}
+	
+]

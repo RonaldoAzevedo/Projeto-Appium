@@ -1,0 +1,55 @@
+[
+	{
+		"id": "CEN01",
+		"Cenário": "Pré Condições de Teste",
+		"casosTestes": [
+			{
+				"CT": "CT01 - Simular Antecipacao.",
+				"busca": "Contratação",
+				"buscaPix": "pix",
+				"buscaConsulata": "consulta",
+				"valor": "10000",
+				"assinatura": "9876",
+				"msg": "Remessa enviada para processamento!",
+				"msgConsulta": "Remessa já enviada para antecipação.",
+				"combo": "Enviada para Processamento",
+				"pdf": " Total da Remessa 1 R$ 100,00"
+				
+				
+			}
+		]
+	},
+	{
+		"id": "CEN02",
+		"Cenario": "Acessar Arquivo.",
+		"casosTestes": [
+			{
+					"CT": "CT01 - Consulta e Simular.",
+					"combo": "Aguardando Aprovação",
+					"buscaPix": "pix",
+				    "busca": "consulta",
+				    "buscaContratacao": "Contratação",
+				    "valor": "10000",
+				    "assinatura": "9876",
+				    "msgConsulta": "Remessa enviada para processamento!",
+				    "pdf": " Total da Remessa 1 R$ 100,00"
+			}	
+		]
+	},
+	{
+		"id": "CEN03",
+		"Cenario": "Acessar Arquivo.",
+		"casosTestes": [
+			{
+					"CT": "CT01 - Filtro e Simular.",
+					"buscaPix": "pix",
+				    "busca": "consulta",
+				    "buscaContratacao": "Contratação",
+				    "valor": "10000",
+				    "assinatura": "9876",
+				    "msgConsulta": "Remessa enviada para processamento!",
+				    "pdf": " Total da Remessa 1 R$ 100,00"
+			}	
+		]
+	}
+]

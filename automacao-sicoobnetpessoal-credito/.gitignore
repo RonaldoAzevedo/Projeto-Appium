@@ -1,0 +1,14 @@
+/target/
+/.project
+/.classpath
+/test-output
+/.settings
+/allure-results/
+/allure-report*
+/bin/
+/.apt_generated/
+/.apt_generated_tests/
+.factorypath
+.debug
+'
+

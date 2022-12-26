@@ -1,0 +1,137 @@
+[
+	{
+		"id": "init",
+		"Cenário": "Pré Condições de Teste",
+		"casosTestes": [
+			{
+				"cooperativa": "4364",
+				"conta": "22228896",
+				"senha": "88888888"
+			}
+		]
+	},
+	{
+		"id": "CEN01",
+		"casosTestes": [
+			{
+				"CT": "CT 1 - Obrigatoriedade todos os campos",
+				"cooperativa": "",
+				"conta": "",
+				"senha": "",
+				"baseline": "Campo obrigatório"
+			},
+			{
+				"cooperativa": "",
+				"conta": "1111111111",
+				"senha": "88888888",
+				"CT": "CT 2 - Obrigatoriedade do campo Cooperativa",
+				"baseline": "Campo obrigatório"
+			},
+			{
+				"CT": "CT 3 - Obrigatoriedade do campo Conta",
+				"cooperativa": "4364",
+				"senha": "88888888",
+				"conta": "",
+				"baseline": "Campo obrigatório"
+			}
+		]
+	},
+	{
+		"id": "CEN02",
+		"casosTestes": [
+			{
+				"cooperativa": "4364",
+				"conta": "1111111111",
+				"senha": "",
+				"CT": "CT 4 - Obrigatoriedade do campo Senha",
+				"baseline": "Informe a senha."
+			},
+			{
+				"cooperativa": "4364",
+				"conta": "1111111111",
+				"senha": "11111111",
+				"CT": "CT 5 - Dados Inválidos - Senha",
+				"baseline": "Informações inválidas. Favor verificar o número da cooperativa, conta corrente e senha."
+			}
+		]
+	},
+	{
+		"id": "CEN03",
+		"casosTestes": [
+			{
+				"cooperativa": "4444",
+				"conta": "470",
+				"senha": "11111111",
+				"CT": "CT 6 - Dados Inválidos - Geral",
+				"baseline": "Informações inválidas. Favor verificar o número da cooperativa, conta corrente e senha."
+			},
+			{
+				"cooperativa": "4444",
+				"conta": "1111111111",
+				"senha": "88888888",
+				"CT": "CT 7 - Dados Inválidos - Cooperativa",
+				"baseline": "Informações inválidas. Favor verificar o número da cooperativa, conta corrente e senha."
+			},
+			{
+				"cooperativa": "4364",
+				"conta": "111",
+				"senha": "88888888",
+				"CT": "CT 8 - Dados Inválidos - Conta",
+				"baseline": "Acesso inválido. Favor verificar os dados informados ou possível bloqueio da senha de acesso. Procure a sua cooperativa ou dirija-se à um caixa eletrônico para desbloquear sua senha (8 dígitos)."
+			}
+		]
+	},
+	{
+		"DADOS_CONEXAO": {
+			"SQL": "SQLH112:1433/%s",
+			"SQL_I02": "SQLH112:1440/%s",
+			"AUTENTICACAO_HOMOL": "SQLH112:1440/BDAutenticacaoHomol",
+			"DB2H301": "DB2H301:50001/%s",
+			"DB2H302": "DB2H302:50001/%s",
+			"DB2H303": "DB2H303:50001/%s",
+			"DB2H305": "DB2H305:50001/%s",
+			"DB2H1012": "DB2H1012:50001",
+			"DB2_ID_INSTITUICAO": "DB2H302:50001/CDM_TBP",
+			"CONEXAO_CUSTOMIZADA": "%s/%s/%s"
+		}
+	},
+	{
+		"SCRIPTS": {
+			"recuperaContaPoupanca": "select NUMCONTAPOUPANCA from pop.CONTAPOUPANCA p where p.numContaVinculada = '%s' and idInstituicaoOrigem = '%s' and p.IDSITUACAOCONTA = 1 order by DATAABERTURACONTA asc",
+			"liberaSenhaBloqueada": "/*Liberacao de senha bloqueada*/   update BDAutenticacaoHomol..identificacaotitular set BolExigeCadastroDispositivo = 'false', DescHashSenhaInternet = 'VXXF+yEjQMeKmbnKhwyIkp0Z89p8a+PX09R/XRi6vIfv1V1SjDGycv09kCItbph/', QtdIncorretaSenhaEfetivacao = 0, BolContaBloqueadaInternet = 'false' where numcooperativa = %s and numconta = %s",
+			"liberaCadastroDispositivo": "/*Nao exige o cadastro do dispositivo*/  Begin  DECLARE   @numCooperativa bigint,   @numConta bigint;   set @numCooperativa = %s;  set @numConta = %s;      update identificacaotitular set bolexigeCadastroDispositivo = 0,IDTipoIdentificacaoDispositivo = 1  where NumCooperativa = @numCooperativa and numConta = @numConta; END IF (@@TOTAL_ERRORS > 0) BEGIN     rollback transaction END",
+			"verificaSenhaEfetivacaoConta": "/*Verificar se existe senha de efetivacao para conta*/  BEGIN DECLARE @numCooperativa varchar(4), @numConta varchar(20), @CPF varchar(11), @query varchar(2000); set @numCooperativa = %s; set @numConta = %s; set @query = ('select NumCGC_CPF from BDHOMOL_' + @numCooperativa + '..Pessoa where numPessoa = ' + '(select numCliente from BDHOMOL_' + @numCooperativa + '..participanteContaCor  where numcontaCorrente = '+@numConta+')');  IF (SELECT COUNT(*) FROM BDAutenticacaoHomol..cartao WHERE NumCooperativa = @numCooperativa and numConta = @numConta) > 0 PRINT 'Conta Possui Senha de Efetivacao Cadastrado';  ELSE BEGIN PRINT 'Realiza o cadastro do cartao para conta'; exec(@query); set @CPF = @query; insert into BDAutenticacaoHomol..Cartao values (@numCooperativa, @numConta,'CORR',NULL,'6042036600013111','CA','2SwAV2ETRtqV7HB8ZgNx77a9M30iT5LM1M5mPOK+GrcF//VDVxy9dR2jGdkbD/hk', 0,'2018-09-13','2018-09-13','4C44F05418793BE2',0,1,@cpf,NULL,NULL) END END",
+			"recuperaIdInstituicao": "/*Recupera IdInstituição*/  select IDINSTITUICAO from sci.viw_instituicao where numcooperativa = %s fetch first 1 rows only",
+			"recuperaNomeBaseDadosSQL": "/*Recupera nome da base de dados*/ SELECT NomeBancoDados FROM BDSRTB..viw_banco_servidor WHERE numCooperativa = %s",
+			"cadastrarFavorecidoTransfPag": "/*Cadastrar Favorecido Transferencia Pagamento*/  BEGIN  DECLARE  @idFavorecido int, @idFavorecidoTransf int, @idFavorecidoPag int, @descNomeFav varchar(50), @contaSicoob decimal, @cpf varchar(14), @codLib varchar(30), @codNumBanco smallint, @agenciaFav smallint, @contaFav varchar(14)  /** Os valores não devem se repetir para a conta utilizada  */ BEGIN SET @descNomeFav = '%s' SET @contaSicoob = %s -- conta usada para logar SET @codLib = '%s' SET @codNumBanco = 756 -- bancoob SET @agenciaFav = %s SET @contaFav = (select top 1 NumContaCorrente from ParticipanteContaCor where NumContaCorrente in (select NumContaCorrente from ContaCorrente where DataEncerramento IS NULL and DataBloqueio IS NULL)  AND NumCliente in (SELECT NumPessoa FROM PESSOA WHERE CodPF_PJ = 0)) SET @cpf = '%s' END   IF NOT EXISTS (SELECT IDFavorecido FROM COR_FavorecidoPessoa WHERE NumContaRemetente = @contaSicoob) BEGIN SET @idFavorecido = 1 SET @idFavorecidoPag = 1 SET @idFavorecidoTransf = 1 END ELSE BEGIN SET @idFavorecido = ((SELECT MAX(IdFavorecido) FROM COR_FavorecidoPessoa WHERE NumContaRemetente = @contaSicoob) + 1) SET @idFavorecidoPag = @idFavorecido SET @idFavorecidoTransf = @idFavorecido END   INSERT  INTO COR_FavorecidoPessoa VALUES( @contaSicoob,--conta que está cadastrando o favorecido  @idFavorecido,--id do favorecido, pode ser informado fora de sequência, ma snão pode existir um com mesmo número @descNomeFav, --Nome do favorecido 0, --0 para PF e 1 para PJ @cpf) --informar o cpf que deseja cadastrar como favorecido    INSERT INTO     COR_FavorecidoTransferencia VALUES     (         @contaSicoob, --conta que está cadastrando o favorecido         @codNumBanco, --número do banco         @agenciaFav, --agencia do favorecido         @contaFav, --Conta do Favorecido         @descNomeFav, --Nome do favorecido, de acordo com o que foi inserido na COR_FavorecidoPessoa         @codLib, --código de liberação pode ser uma string nesse formato String + String + 4 integers desde que não se repita         GETDATE(),         GETDATE(),         NULL,          2038232, --ISPB do favorecido         @idFavorecido, --Id do favorecido na tabela COR_FavorecidoPessoa         @idFavorecidoTransf, --id do favorecido transferência, pode ser informado fora de sequência, ma snão pode existir um com mesmo número         null     )  INSERT INTO     COR_FavorecidoPagamento VALUES     ( @contaSicoob, --Conta que está cadastrando o favorecido @idFavorecido, --Id favorecido informado na COR_FavorecidoPessoa @codLib, --código String + String + 4 integers GETDATE(),  GETDATE(), NULL)  END",
+			"consultarContaFavorecido": "/*Consultar Conta Favorecido*/  BEGIN select top 1 PCC.NumContaCorrente from ParticipanteContaCor PCC     JOIN PESSOA P ON PCC.NumCliente = P.NumPessoa    JOIN ContaCorrente CC ON PCC.NumContaCorrente = CC.NumContaCorrente where   P.CodPF_PJ = 0  AND  CC.DataEncerramento IS NULL and CC.DataBloqueio IS NULL   order by PCC.NumContaCorrente desc END",
+			"deletaFavorecidoTransfPag": "/*Deletar Favorecido Transferencia Pagamento*/  BEGIN  DECLARE @contaSicoob decimal, @cpf varchar(14)  SET @contaSicoob = %s SET @cpf = '%s'   delete from COR_FavorecidoTransferencia where NumContaRemetente = @contaSicoob and IdFavorecido in  (select IdFavorecido from COR_FavorecidoPessoa where NumCNPJ_CPFFavorecido = @cpf and NumContaRemetente = @contaSicoob)  delete from COR_FavorecidoPagamento where NumContaRemetente = @contaSicoob and IdFavorecido in  (select IdFavorecido from COR_FavorecidoPessoa where NumCNPJ_CPFFavorecido = @cpf and NumContaRemetente = @contaSicoob)  delete from COR_FavorecidoPessoa where NumContaRemetente = @contaSicoob and NumCNPJ_CPFFavorecido = @cpf  END",
+			"consultaCpfFavorecidoTransf": "/*Consulta CPF Favorecido Transferencia*/  BEGIN  select NumCGC_CPF         from         pessoa where NumPessoa in  (select NumCliente from ParticipanteContaCor where NumContaCorrente = %s)  END",
+			"recuperaCpfCnpjPorConta": "/*Recupera Cpf Cpnj*/  select NumCGC_CPF from pessoa where NumPessoa in (select NumCliente from participanteContaCor where NumContaCorrente = %s)",
+			"recuperaDiaUtil": "/*Recupera dia util*/ select convert(varchar, dbo.fn_ObterProximoDiaUtil('%s', 0) ,103)",
+			"recuperaIdPessoaDB2": "/*Recupera IdPessoa DB2*/  select idPessoa from cli.pessoa where NUMCPFCNPJ = '%s'",
+			"deletaTransfCCO": "/* DELETA TRANSF CCO */ BEGIN DECLARE @NCCO VARCHAR(20) SET @NCCO = '%s' DECLARE @T TABLE( agendamento bigint )  insert into @T (agendamento)  select idagendamento from cor_agendamento where numcontaorigem = @NCCO  and  idagendamento in (select idagendamento from cor_agendamentotransfcco) delete from cor_agendamentotransfcco where idagendamento in (select agendamento from @T) delete from cor_agendamento where idagendamento in (select agendamento from @T) END",
+			"deletaTransfPoup": "/* DELETA TRANSF POUP */ BEGIN DECLARE @NCCO VARCHAR(20) SET @NCCO = '%s' DECLARE @T TABLE( agendamento bigint ) insert into @T (agendamento)  select idagendamento from cor_agendamento where numcontaorigem = @NCCO  and  idagendamento in (select idagendamento from cor_agendamentoPoupanca) delete from cor_agendamentoPoupanca where idagendamento in (select agendamento from @T) delete from cor_agendamento where idagendamento in (select agendamento from @T) END",
+			"deletaTransfTED": "/* DELETA TRANSF TED */ BEGIN DECLARE @NCCO VARCHAR(20) SET @NCCO = '%s' DECLARE @T TABLE( agendamento bigint )  insert into @T (agendamento)  select idagendamento from cor_agendamento where numcontaorigem = @NCCO  and  idagendamento in (select idagendamento from cor_agendamentoTED) delete from cor_agendamentoTED where idagendamento in (select agendamento from @T) delete from cor_agendamento where idagendamento in (select agendamento from @T) END",
+			"deletaTransfDOC": "/* DELETA TRANSF DOC */ BEGIN DECLARE @NCCO VARCHAR(20) SET @NCCO = '%s' DECLARE @T TABLE( agendamento bigint )  insert into @T (agendamento)  select idagendamento from cor_agendamento where numcontaorigem = @NCCO  and  idagendamento in (select idagendamento from cor_agendamentoDOC) delete from cor_agendamentoDOC where idagendamento in (select agendamento from @T) delete from cor_agendamento where idagendamento in (select agendamento from @T) END",
+			"consultarSaldoCCO": "Begin declare @NumContaCorrente int declare @Data datetime set @NumContaCorrente = 388 set @Data = (select dataatualmovimento from produto where IDProduto = 13) begin If exists(select 1 from ValorParametro where IDParametro = 1087 and ValorPar = 0) begin SELECT (ISNULL(ValorSaldoVinc, 0) + ValorSaldoDispAtual + ValorLimite) SALDO FROM dbo.fn_RetornaSaldoCCO(@Data, @NumContaCorrente, 0, 1) End end end",
+			"realizaOperacaoCCO": "Begin declare @NumContaCorrente int declare @ValorLanc money declare @Operacao smallint declare @Data datetime set @NumContaCorrente = %s set @ValorLanc = %s set @Operacao = %s set @Data = (select dataatualmovimento from Produto where IDProduto = 13) declare @NumSeqLanc int set @NumSeqLanc = 1 select @NumSeqLanc = max(NumSeqLanc) + 1 from LancamentoCCO where DataLote = @Data if @Operacao = 1 begin insert into LancamentoCCO values ( @Data ,1 ,0 ,@NumSeqLanc ,'MEU_DEP' ,@NumContaCorrente ,@ValorLanc ,0 ,3 ,510 ,NULL ,NULL ,NULL ,GETDATE() ) set @Operacao = 3 end if @Operacao = 2 begin insert into LancamentoCCO values ( @Data ,1 ,0 ,@NumSeqLanc ,'MEU_SAQ' ,@NumContaCorrente ,@ValorLanc ,0 ,3 ,224 ,NULL ,NULL ,NULL ,GETDATE() ) set @Operacao = 3 end if @Operacao = 3 begin print 'SALDO' set nocount on if exists(select 1 from ValorParametro where IDParametro = 1087 and ValorPar = 0) begin SELECT (ISNULL(ValorSaldoVinc, 0) + ValorSaldoDispAtual + ValorLimite) SALDO FROM dbo.fn_RetornaSaldoCCO(@Data, @NumContaCorrente, 0, 1) end end end",
+			"retornaDataMovimentoProduto": "/* RETORNA DATA DO MOVIMENTO*/ SELECT DATEADD(day,%s,DATAATUALMOVIMENTO)  AS DATAATUALCAIXA FROM PRODUTO WHERE IDPRODUTO = %s",
+			"retornaDataProdutp": "/* RETORNA DATA DO PRODUTO*/ SELECT CONVERT(varchar,DATEADD(day,%s,DataAtualProd),103)  AS DATAPRODUTO FROM PRODUTO WHERE IDPRODUTO = %s",
+			"ajustaDataHoraCCOCAP": "/* IGUALA DATA CCO COM CONTA CAPITAL */ UPDATE dbo.Produto set DataAntProd = (SELECT DataAntProd FROM dbo.Produto WHERE IDProduto = 3), DataProxProd= (SELECT DataProxProd FROM dbo.Produto WHERE IDProduto = 3), DataAtualProd=(SELECT DataAtualProd FROM dbo.Produto WHERE IDProduto = 3), DataUltMovimento = (SELECT DataUltMovimento FROM dbo.Produto WHERE IDProduto = 3), DataAtualMovimento = (SELECT DataAtualMovimento FROM dbo.Produto WHERE IDProduto = 3), DataProxMovimento  = (SELECT DataProxMovimento FROM dbo.Produto WHERE IDProduto = 3) where IDProduto = 2 ",
+			"ajustaDataHoraCaixa": "BEGIN DECLARE @CCO_ULT_MOV DATETIME DECLARE @CCO_ATUAL_MOV DATETIME DECLARE @CCO_PROX_MOV DATETIME DECLARE @CCO_ANT_PROD DATETIME DECLARE @CCO_ATUAL_PROD DATETIME DECLARE @CCO_PROX_PROD DATETIME SET @CCO_ULT_MOV = (select DataUltMovimento from produto where idproduto = 3) SET @CCO_ATUAL_MOV = (select DataAtualMovimento from produto where idproduto = 3) SET @CCO_PROX_MOV = (select DataProxMovimento from produto where idproduto = 3) SET @CCO_ANT_PROD = (select DataAntProd from produto where idproduto = 3) SET @CCO_ATUAL_PROD = (select DataAtuaLProd from produto where idproduto = 3) SET @CCO_PROX_PROD = (select DataProxProd from produto where idproduto = 3) UPDATE dbo.produto SET DataUltMovimento = DATEADD(day,1,@CCO_ULT_MOV), DataAtualMovimento = DATEADD(day,1,@CCO_ATUAL_MOV), DataProxMovimento = DATEADD(day,1,@CCO_PROX_MOV), DataAntProd = DATEADD(day,-1,@CCO_ANT_PROD), DataAtualProd = DATEADD(day,-1,@CCO_ATUAL_PROD), DataProxProd = DATEADD(day,-1,@CCO_PROX_PROD) WHERE  idproduto = 9 UPDATE dbo.Cor_AgendamentoControle SET DataUltAtualizacao = @CCO_ATUAL_PROD END",
+			"deletaLancamentosCCODB2": "/*DELETA LANCAMENTOSCCO DB2*/ BEGIN ATOMIC declare numcco varchar(15); set numcco = '%s'; delete from ctr. CONTROLETRANSACAOREALIZADA where numcontacorrente = numcco; END",
+			"deletaLancamentosCCOSQL": "/*DELETA LANCAMENTOSCCO SQL*/ delete from lancamentocco where numcontacorrente = '%s'",
+			"liberaDispositivoCadastrado": "/* libera dispositivo */ BEGIN ATOMIC DECLARE nliberacao INTEGER; SET nliberacao = %s; update cdi.DISPOSITIVOESTACAO set BOLDISPOSITIVOATIVO = 1, BOLLIBERACAODISPO = 1, DATALIBERACAODISPO = (select DATACADASTRODISPO from cdi.DISPOSITIVOESTACAO where NUMLIBERACAO = nliberacao order by DATACADASTRODISPO desc FETCH FIRST ROW ONLY) where NUMLIBERACAO = nliberacao; END",
+			"recuperaDadosParticipanteCCO": "/*Recupera dados participante CCO*/ select p.CodPF_PJ,p.NumCGC_CPF,p.DescNomePessoa from Pessoa p where numPessoa in (select pcc.numcliente from participantecontacor pcc where pcc.NumContaCorrente = %s)",
+			"liberaDispositivoSicoobAuth": "/*Liberacao de Dispositivo*/ UPDATE CDI.DISPOSITIVOESTACAO SET BOLDISPOSITIVOATIVO = 1, BOLLIBERACAODISPO = 1, DATALIBERACAODISPO = CURRENT_DATE, IDCANALLIBERACAO = 6 WHERE IDIDENTIFICACAO IN ( SELECT IdIdentificacao FROM CDI.IDENTIFICACAO WHERE DESCIDENTIFICACAO = '%s' AND IDCanal = 6 )AND DESCAPELIDODISPO like '%s'",
+			"solicitaCadastroDispositivoSicoobAuth": "/*Exigi o cadastro do dispositivo no Sicoob Auth*/ Begin DECLARE @numCooperativa bigint, @numConta bigint; set @numCooperativa = %s; set @numConta = %s; update identificacaotitular set bolexigeCadastroDispositivo = 1, IDTipoIdentificacaoDispositivo = 2 where NumCooperativa = @numCooperativa and numConta = @numConta; END IF (@@TOTAL_ERRORS > 0) BEGIN rollback transaction END"
+		}
+	},
+	{
+		"MENSAGENS": {
+			"BLOQUEIO_SENHA": "A senha informada está incorreta. Após três erros consecutivos o seu acesso será bloqueado. Restam duas tentativas;A senha informada está incorreta. Após três erros consecutivos o seu acesso será bloqueado. Resta uma tentativa;A senha informada está incorreta. O seu acesso ao Sicoobnet Pessoal e Sicoobnet Celular encontram-se bloqueados, é necessário ir na cooperativa ou caixa eletrônico do Sicoob para desbloquear a senha de acesso (8 dígitos).",
+			"LOGIN_BLOQUEADO": "Por motivos de segurança, o seu acesso está bloqueado;Para realizar o desbloqueio, altere sua senha no app acessando \"Esqueceu sua senha?\" ou procure sua cooperativa"
+		}
+	}
+]

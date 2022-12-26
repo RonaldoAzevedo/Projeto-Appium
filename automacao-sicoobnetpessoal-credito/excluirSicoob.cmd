@@ -1,0 +1,2 @@
+del allure-results/Q
+

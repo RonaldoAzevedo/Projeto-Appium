@@ -1,0 +1,160 @@
+[
+	{
+		"id": "init",
+		"Cenário": "Pré Condições de Teste",
+		"casosTestes": [
+			{
+				"coopPagador": "4364",
+				"contaPagador": "3123456",
+				"senha": "88888888",
+				"coopReceber": "4364",
+				"contaReceber": "19194",
+				"coopPop":"4364",
+				"contaPop":"3131319",
+				"outraCoop":"3105",
+				"outraConta":"2321"
+			}
+		]
+	},
+	{
+		"id": "CEN01",
+		"Cenário": "Realiza Devolução valor Total conta corrente",
+		"casosTestes": [
+			{
+				"CT": "CT01 - Realiza devolução valor total conta corrente",
+				"motivo":"devolucao valor total"
+			}
+		]
+	},
+		{
+		"id": "CEN02",
+		"Cenário": "Realiza Devolução valor parcial conta corrente",
+		"casosTestes": [
+			{
+				"CT": "CT02 - Realiza devolução valor parcial conta corrente",
+				"motivo":"devolucao valor parcial"
+			}
+		]
+	},
+	{
+		"id": "CEN03",
+		"Cenário": "Exportação PDF",
+		"casosTestes": [
+			{
+				"CT": "CT03 - Exportação PDF"
+			}
+		]
+	},
+		{
+		"id": "CEN04",
+		"Cenário": "Exportação Imagem",
+		"casosTestes": [
+			{
+				"CT": "CT04 - Exportação Imagem"
+			}
+		]
+	},
+			{
+		"id": "CEN05",
+		"Cenário": "Impressão",
+		"casosTestes": [
+			{
+				"CT": "CT05 - Impressão"
+			}
+		]
+	},
+	{
+		"id": "CEN06",
+		"Cenário": "Realiza Devolução valor Total conta poupança",
+		"casosTestes": [
+			{
+				"CT": "CT06 - Realiza devolução valor total conta poupança",
+				"motivo":"devolucao valor total"
+			}
+		]
+	},
+		{
+		"id": "CEN07",
+		"Cenário": "Realiza Devolução valor parcial conta poupança",
+		"casosTestes": [
+			{
+				"CT": "CT07 - Realiza devolução valor parcial conta poupança",
+				"motivo":"devolucao valor parcial"
+			}
+		]
+	},
+		{
+		"id": "CEN08",
+		"Cenário": "Realiza Devolução valor total conta corrente diferente cooperativa",
+		"casosTestes": [
+			{
+				"CT": "CT08 - Realiza devolução valor total conta corrente diferente cooperativa",
+				"motivo":"devolucao valor total"
+			}
+		]
+	},
+		{
+		"id": "CEN09",
+		"Cenário": "Realiza Devolução valor parcial conta corrente diferente cooperativa",
+		"casosTestes": [
+			{
+				"CT": "CT09 - Realiza devolução valor parcial conta corrente diferente cooperativa",
+				"motivo":"devolucao valor parcial"
+			}
+		]
+	},
+	
+			{
+		"id": "CEN10",
+		"Cenário": "Realiza Devolução valor total conta poupança diferente cooperativa",
+		"casosTestes": [
+			{
+				"CT": "CT10 - Realiza devolução valor total conta corrente diferente cooperativa",
+				"motivo":"devolucao valor total"
+			}
+		]
+	},
+		{
+		"id": "CEN11",
+		"Cenário": "Realiza Devolução valor parcial conta poupança diferente cooperativa",
+		"casosTestes": [
+			{
+				"CT": "CT11 - Realiza devolução valor parcial conta corrente diferente cooperativa",
+				"motivo":"devolucao valor parcial"
+			}
+		]
+	},
+	{
+		"dadosGenericos": {
+			"senhaEfetivacao":"9876",
+			"baselineDevolucao":"Pix - Pagamento;ID/Transação;Valor:;Data/hora:;Pagador;Instituição:;Nome:;CPF/CNPJ:;Agência:;Conta corrente:;Destinatário;Instituição:;Nome:;CPF/CNPJ:;Agência:;Devolver;Exportar;Imprimir",
+			"baselineConfirmacao":"Pix;ID/Transação;Valor:;Data/hora:;Destinatário;Instituição:;Nome:;CPF/CNPJ:;Agência:;Conta corrente:;Pagador;Instituição:;Nome:;CPF/CNPJ:;Agência:;Valor original;Total;Parcial;Valor (R$);Digite a senha de efetivação (4 dígitos) para confirmar a transação;Esqueci a senha;Confirmar",
+			"baselineComprovante":"Pix - Devolução;ID/Transação;Valor:;Data/hora:;Pagador;Instituição:;Nome:;CPF/CNPJ:;Agência:;Destinatário;Instituição:;Nome:;CPF/CNPJ:;Agência:;Exportar;Imprimir",
+			"tipoPagamento":"Chave",
+			"tipoChave":"CPF/CNPJ",
+			"tipoValorChave":"CPF",
+			"descricao":"automacao devolucao",
+			"baselineConfirmacaoPagamento":"Confirme os dados do pagamento;Pagador;Instituição;CPF/CNPJ;Nome;Cooperativa;Destinatário;Instituição;CPF/CNPJ;Nome;Chave;Valor;Descrição;Digite a senha de efetivação (4 dígitos) para confirmar a transação;Esqueci a senha;Confirmar",
+			"baselineComprovantePagamento":"Pix;Valor:;Data;hora:;Descrição:;Pagador;Instituição:;Nome:;CPF/CNPJ:;Agência:;Destinatário;Instituição:;Nome:;CPF/CNPJ:;Agência:;Exportar;Imprimir"			
+		},
+			"massa": {
+			"numCelularPagador": "68998836969",
+			"emailPagador": "autodevpagador@autodevpagador.com.br",
+			"numCelularDestinatario": "67993755751",
+			"emailDestinatario": "autodevdest@autodevdest.com.br",
+			"numCelularPop": "69990102841",
+			"emailPop": "pixpopdevpag@pixpopdevpag.com.br",
+			"emailPagadorOutroCooperativa": "autodevdestoutracoop@autodevdestoutracoop.com.br",
+			"numCelularOutroCooperativa": "69981203952",
+			"ddd": "+55"
+		},
+		
+		  "scripts": {
+		  	"conexaoDb2Pop":"INV_TBP",
+			"retornaValorCpfProprietario": "select pcp.NUMCPFCNPJPROPRIETARIOCHAVEPIX from pixcon.proprietariochavepix pcp where pcp.numconta = %s and pcp.numagencia = %s",			
+			"deletaLancamentosAtual":"delete from lancamentoCCO where numcontacorrente = %s",
+			"deletaLancamentosPoup":"BEGIN ATOMIC  DECLARE @NUMPOUPANCA VARCHAR(15); SET @NUMPOUPANCA = '%s'; delete from POP.LANCAMENTOTARIFAPOUPANCA where IDLANCAMENTOPOUPANCA in (select IDLANCAMENTOPOUPANCA from POP.LANCAMENTOPOUPANCA where NUMCONTAPOUPANCA = @NUMPOUPANCA); delete from POP.TRANSFERENCIA WHERE IDLANCAMENTOPOUPANCA in (select IDLANCAMENTOPOUPANCA from POP.LANCAMENTOPOUPANCA where NUMCONTAPOUPANCA = @NUMPOUPANCA);  delete from POP.INFCOMPLEMENTARLANCAMENTO WHERE IDLANCAMENTOPOUPANCA in (select IDLANCAMENTOPOUPANCA from POP.LANCAMENTOPOUPANCA where NUMCONTAPOUPANCA = @NUMPOUPANCA); delete from POP.LANCAMENTOPOUPANCA where NUMCONTAPOUPANCA = @NUMPOUPANCA; END"
+		}
+		
+	}
+]

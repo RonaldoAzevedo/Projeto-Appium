@@ -1,0 +1,39 @@
+[
+	{
+		"id": "CEN01",
+		"Cenário": "Dados do Teste",
+		"casosTestes": [
+			{
+				"linha": "7316",
+				"cpf": "854.621.655-01",
+				"valor": "10000",
+				"parcela": "3",
+				"opcao": "lbl-30",
+				"texto": "teste",
+				"tipoGarantiaGARANTIAFIDEJUSSÓRIA": "GARANTIA FIDEJUSSÓRIA",
+				"grupoGarantiaAVALISTA-PF": "AVALISTA - PF",
+				"enquadramentoAVALISTA-PF": "AVALISTA - PF",
+				"tipoGarantia2": "CESSÃO DE DIREITOS CREDITÓRIOS",
+				"grupoGarantia2": "AÇÕES E DEBÊNTURES",
+				"enquadramento2": "APLICAÇÃO FINANCEIRA EXTERNA",
+				"tipoOrigem": "PRÓPRIO",
+				"responsabilidadeAlienacao2": "FIEL DEPOSITÁRIO",
+				"tipoGarantia3": "ALIENAÇÃO FIDUCIÁRIA",
+				"grupoGarantia3": "IMÓVEL - URBANO",
+				"enquadramento3": "RESIDENCIAL - CASA",
+				"cpfAvalista": "672.991.850-08",
+				"resonsabilidade": "AVALISTA",
+				"responsabilidadeAlienacao": "PROPRIETÁRIO",
+				"valorImovel": "10000000",
+				"cartorio": "SIM",
+				"msg": "Operação realizada com sucesso!",
+				"parecer": "FAVORÁVEL",
+				"acao": "APROVAR",
+				"instrumento": "1081 - DOCUMENTO EM BRANCO",
+				"seguro": "INEXISTENTE",
+				"assinatura": "FÍSICA"
+			}
+		]
+	}
+	
+]

@@ -1,0 +1,38 @@
+[
+	{
+		"perfil": "central",
+		"login": "auto.chat",
+		"password": "02CH@T$AUT1",
+		"dados": {
+			"cooperativa": "0300",
+			"instituicao": "2"
+		}
+	},
+	{
+		"perfil": "singular",
+		"login": "AUTO.CHATT",
+		"password": "02CH@T$AUT1",
+		"dados": {
+			"cooperativa": "4364",
+			"instituicao": "700"
+		}
+	},
+	{
+		"perfil": "yoou",
+		"login": "carlos.sad",
+		"password": "Sicoob@123",
+		"dados": {
+			"cooperativa": "3260",
+			"instituicao": "264"
+		}
+	},
+	{
+		"perfil": "yoou2",
+		"login": "victor.freire3260",
+		"password": "Sicoob@123",
+		"dados": {
+			"cooperativa": "3260",
+			"instituicao": "264"
+		}
+	}
+]

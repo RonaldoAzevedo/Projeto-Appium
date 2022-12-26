@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@shelex/cypress-allure-plugin": "^2.26.5"
+  }
+}

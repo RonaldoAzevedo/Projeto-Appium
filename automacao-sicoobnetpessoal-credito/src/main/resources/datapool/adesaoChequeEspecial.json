@@ -1,0 +1,17 @@
+[
+	{
+		"id": "CEN01",
+		"Cenário": "Pré Condições de Teste",
+		"casosTestes": [
+			{
+				"CT": "CT01 - Simular Antecipacao.",
+				"busca": "Adesão",
+				"assinatura": "9876",
+				"msg": "Parabéns! Agora você tem um limite para utilizá-lo em caráter emergencial.",
+				"buscaPix": "pix"
+
+			}
+		]
+	}
+	
+]

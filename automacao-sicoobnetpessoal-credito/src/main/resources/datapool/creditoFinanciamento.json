@@ -1,0 +1,35 @@
+[
+	{
+		"id": "CEN01",
+		"Cenário": "Dados do Teste",
+		"casosTestes": [
+			{
+				"valorfinanciamento": "10000",
+				"valorcarro": "10000000",
+				"celular": "22222222222",
+				"ano": "2022",
+				"entrada": "R$ 99.900,00", 
+				"nome": "Jotinha Alves",
+				"cpf": "610.730.720-61",
+				"codbanco": "01",
+				"agencia": "1230",
+				"conta": "897450",
+				"telefone": "3333333333",
+				"email": "teste@sicoob.com",
+				"msgProposta": "Proposta enviada!",
+				"idpessoa": "12902",
+				"idinstituicao": "332",
+				"busca": "Financiamento de veículo",
+				"parcela": "24",
+				"sim": "Sim",
+				"carro": "Carros",
+				"marca": "Agrale",
+				"modelo": "MARRUÁ AM 200 2.8 CS TDI Diesel",
+				"anoKm": "Zero KM",
+				"uf": "DF",
+				"msg": "1. Dados do veículo"
+			}
+		]
+	}
+	
+]

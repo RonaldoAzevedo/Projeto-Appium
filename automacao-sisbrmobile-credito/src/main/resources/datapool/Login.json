@@ -1,0 +1,15 @@
+[
+	{
+		"id": "CEN01",
+		"Cenário": "Pré Condições de Teste",
+		"casosTestes": [
+			{
+				
+				"usuario": "automacao.npc",
+				"senha": "Gecoq123#",
+				"ambiente": "##ambiente##"
+			}
+		]
+	}
+	
+]

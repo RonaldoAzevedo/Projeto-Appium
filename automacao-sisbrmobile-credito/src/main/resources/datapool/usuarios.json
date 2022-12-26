@@ -1,0 +1,13 @@
+[
+  	{
+        "perfil": "automacao",
+        "ambiente": "##ambiente##",
+   		"login": "automacao.npc",
+ 		"password": "Gecoq123#",
+		"dados": {
+	    	      "instituicao": "",
+	              "cooperativa": ""
+	     }
+	    
+  	}
+]

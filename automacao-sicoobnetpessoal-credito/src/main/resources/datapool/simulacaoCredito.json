@@ -1,0 +1,15 @@
+[
+	{
+		"id": "CEN01",
+		"Cenário": "Simulação de Crédito",
+		"casosTestes": [
+			{
+				"CT": "CT01 - Simular crédito pré aprovado.",
+				"busca": "credito",
+				"valorSolicitado": "10000",
+				"parcela": "30 dias"
+			}
+		]
+	}
+	
+]

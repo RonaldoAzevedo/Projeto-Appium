@@ -1,0 +1,45 @@
+[
+  	{
+        "perfil": "Lindomar",
+   		"login": "897450",
+ 		"password": "88888888",
+		"dados": {
+	    	      "instituicao": "",
+	              "cooperativa": "3330"
+	     }
+	    
+  	},
+  	
+  	{
+        "perfil": "RafaelFisica",
+   		"login": "3939006",
+ 		"password": "88888888",
+		"dados": {
+	    	      "instituicao": "",
+	              "cooperativa": "5014"
+	     }
+	    
+  	},
+  	
+  	{
+        "perfil": "RafaelPJ",
+   		"login": "2356899",
+ 		"password": "88888888",
+		"dados": {
+	    	      "instituicao": "",
+	              "cooperativa": "5014"
+	     }
+	    
+  	},
+  	
+  	{
+        "perfil": "Rural",
+   		"login": "5484553",
+ 		"password": "88888888",
+		"dados": {
+	    	      "instituicao": "",
+	              "cooperativa": "3219"
+	     }
+	    
+  	}
+]

@@ -1,0 +1,129 @@
+[
+	{
+		"id": "init",
+		"Cenário": "Pré Condições de Teste",
+		"casosTestes": [
+			{
+				"cooperativa": "3219",
+				"conta": "921840381",
+				"senha": "88888888"
+			}
+		]
+	},
+	{
+		"id": "CEN01",
+		"Cenário": "Visualizar propostas de Credito Rural.",
+		"casosTestes": [
+			{
+				"CT": "CT01 - Proposta em análise",
+				"origem": "Crédito Rural",
+				"situacao": "Proposta em análise",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Crédito Rural;Situação:;Proposta em análise"
+			},
+			{
+				"CT": "CT02 - Documentação em análise",
+				"origem": "Crédito Rural",
+				"situacao": "Documentação em análise",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Crédito Rural;Situação:;Documentação em análise"
+			},
+			{
+				"CT": "CT03 - Proposta em estudo",
+				"origem": "Crédito Rural",
+				"situacao": "Proposta em estudo",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Crédito Rural;Situação:;Proposta em estudo"
+			},
+			{
+				"CT": "CT04 - Aguardando formalização",
+				"origem": "Crédito Rural",
+				"situacao": "Aguardando formalização",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Crédito Rural;Situação:;Aguardando formalização"
+			},
+			{
+				"CT": "CT05 - Liberação de crédito",
+				"origem": "Crédito Rural",
+				"situacao": "Liberação de crédito",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Crédito Rural;Situação:;Liberação de crédito"
+			},
+			{
+				"CT": "CT06 - Crédito liberado",
+				"origem": "Crédito Rural",
+				"situacao": "Crédito liberado",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Crédito Rural;Situação:;Crédito liberado"
+			},
+			{
+				"CT": "CT07 - Cancelada",
+				"origem": "Crédito Rural",
+				"situacao": "Cancelada",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Crédito Rural;Situação:;Cancelada"
+			},
+			{
+				"CT": "CT08 - Indeferida",
+				"origem": "Crédito Rural",
+				"situacao": "Indeferida",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Crédito Rural;Situação:;Indeferida"
+			}
+		]
+	},
+	{
+		"id": "CEN02",
+		"Cenário": "Visualizar propostas de Intenção de Financiamento.",
+		"casosTestes": [
+			{
+				"CT": "CT09 - Pendente",
+				"origem": "Intenção de Financiamento",
+				"situacao": "Pendente",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Intenção de Financiamento;Situação:;Pendente"
+			},
+			{
+				"CT": "CT10 - Em análise",
+				"origem": "Intenção de Financiamento",
+				"situacao": "Em análise",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Intenção de Financiamento;Situação:;Em análise"
+			},
+			{
+				"CT": "CT11 - Indeferida",
+				"origem": "Intenção de Financiamento",
+				"situacao": "Indeferida",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Intenção de Financiamento;Situação:;Indeferida"
+			}
+		]
+	},
+	{
+		"id": "CEN03",
+		"Cenário": "Visualizar propostas de Solicitação de Renovação.",
+		"casosTestes": [
+			{
+				"CT": "CT12 - Pendente",
+				"origem": "Solicitação de Renovação",
+				"situacao": "Pendente",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Solicitação de Renovação;Situação:;Pendente"
+			},
+			{
+				"CT": "CT13 - Em análise",
+				"origem": "Solicitação de Renovação",
+				"situacao": "Em análise",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Solicitação de Renovação;Situação:;Em análise"
+			},
+			{
+				"CT": "CT14 - Proposta em análise",
+				"origem": "Solicitação de Renovação",
+				"situacao": "Proposta em análise",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Solicitação de Renovação;Situação:;Proposta em análise"
+			},
+			{
+				"CT": "CT15 - Indeferida",
+				"origem": "Solicitação de Renovação",
+				"situacao": "Indeferida",
+				"baselineDetalheProposta": "Produto:;Valor:;Origem:;Solicitação de Renovação;Situação:;Indeferida"
+			}
+		]
+	},
+	{
+		"dadosGenericos": {
+			"menu": "Proposta de crédito"
+		},
+		"scripts": {
+			"dadosConexao": "SQLH112:1433/%s;"
+		}
+	}
+]
